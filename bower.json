@@ -1,0 +1,21 @@
+{
+  "name": "simple-static-server",
+  "description": "Servidor estatico simple",
+  "main": "server.js",
+  "authors": [
+    "@rivalcoba"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "static",
+    "server"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
