@@ -6,6 +6,8 @@ var fs = require('fs');
 var path = require('path');
 // Cargando colors
 var colors = require('colors');
+// cargando e modulo mime
+var mime = require('mime');
 
 // -- Cargando configuraciones
 var config = require("./config/config");
@@ -32,26 +34,8 @@ var server = http.createServer(function(req, res){
 
     // Extrayendo la extension de la url solicitada
     var extName = path.extname(resourcePath);
-
     // Creando la variable content-type
-    var contentType;
-
-    // Asignado un content type dependiendo
-    // de la extension de la url solicitada
-    switch (extName) {
-        case ".js":
-            contentType = 'text/javascript';
-            break;
-        case ".css":
-            contentType = 'text/css'
-            break;
-        case ".html":
-            contentType = 'text/html'
-            break;
-        default:
-            contentType = 'text/plain'
-            break;
-    }
+    var contentType = mime.lookup(extName);
     // todo: verificar la exitencia del recurso
     fs.exists(resourcePath, function(exists){
         if(exists){
