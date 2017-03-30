@@ -12,6 +12,12 @@ var mime = require('mime');
 // -- Cargando configuraciones
 var config = require("./config/config");
 
+// Importando los Handlers
+var handlers = require('./internals/handlers');
+
+// Importo la funcionalidad del servidor estico
+var staticServer = require('./internals/static-server');
+
 // Establecer el tema de colors
 colors.setTheme(config.color_theme);
 
@@ -21,58 +27,21 @@ var server = http.createServer(function(req, res){
     console.log(`> Peticion entrante: ${req.url}`.data);
     // Variable que almacenara la ruta absoluta
     // del archivo a ser servido
-    var resourcePath;
-    if(req.url == "/"){
-        // El cliente no especifica
-        // recurso
-        resourcePath = './static/index.html';
+    
+    // Verificando si la url corresponde
+    // a un comando de mi API
+    if(typeof(handlers[req.url]) == 'function'){
+        // Existe el manejador en mi API
+        // Entonces Mando a ejecutar el
+        // Manejador con los parametros que pide
+        handlers[req.url](req, res);
     }else{
-        // El cliente si especifica
-        // recurso
-        resourcePath = config.STATIC_PATH + req.url;
+        // No existe el Manejador en mi
+        // API
+        // Entonces Intento servir la url
+        // como un recurso estatico
+        staticServer.serve(req, res);
     }
-
-    // Extrayendo la extension de la url solicitada
-    var extName = path.extname(resourcePath);
-    // Creando la variable content-type
-    var contentType = mime.lookup(extName);
-    // todo: verificar la exitencia del recurso
-    fs.exists(resourcePath, function(exists){
-        if(exists){
-            console.log('> Recursos existe...'.info);
-            // El recurso existe y se 
-            // intentara leer
-            fs.readFile(resourcePath, function(err, content){
-                // Verficio si hubo un error
-                // en la lectura del archivo
-                if(err){
-                    console.log('> Error en lectura de recurso'.error);
-                    // Hubo error de lectura
-                    res.writeHead(500,{
-                        'Content-Type':'text/html'
-                    });
-                    res.end('<h1>500: Error Interno<h1>');
-                }else{
-                    console.log(`> Se despacha recurso: ${resourcePath}`.info);
-                    // No hubo error
-                    // Se envia el contenido al cliente
-                    res.writeHead(200,{
-                        'Content-Type': contentType,
-                        'Server' : 'ITGAM@0.0.1'
-                    });
-                    res.end(content,'utf-8');
-                }
-            });
-        }else{
-            // El recurso no existe
-            console.log('> El recurso solicitado no fue encontrado...'.info);
-            res.writeHead(404,{
-                'Content-Type' : 'text/html',
-                'Server' : 'ITGAM@0.0.1'
-            });
-            res.end('<h1>404: Not Found</h1>');
-        }
-    });
 });
 
 // Poniendo en ejecucion el server
