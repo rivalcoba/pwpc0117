@@ -45,7 +45,7 @@ var server = http.createServer(function(req, res){
 });
 
 // Poniendo en ejecucion el server
-server.listen(config.PORT,config.IP,function(){
+server.listen(process.env.PORT, process.env.PORT, function(){
     console.log(
     `> Server escuchando en http://${config.IP}:${config.PORT}`.info)
 });
