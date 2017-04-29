@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar Art</title>
+        <!-- Cargando Los estilos de Bootstrap -->
+    <link 
+        rel="stylesheet" 
+        href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/formstyle.css">
+    <!-- Cargando el estilo -->
+    <link 
+        rel="stylesheet" 
+        href="vendor\bootstrap\dist\css\bootstrap-theme.min.css">
+    <!-- Google Fonts -->
+		<link 
+            href='https://fonts.googleapis.com/css?family=Passion+One' 
+            rel='stylesheet' type='text/css'>
+		<link 
+            href='https://fonts.googleapis.com/css?family=Oxygen' 
+            rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h1 class="title">Cargar Nuevo Artículo</h1>
+                <form class="" method="POST" action="/saveitem">
+                    <div class="form-group">
+                        <label for="sku" class="cols-sm-2 control-label">
+                            SKU (stock keeping unit)
+                        </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-qrcode" 
+                                        aria-hidden="true">
+                                    </span>
+                                </span>
+                                <input
+                                    maxlength="5"
+                                    required
+                                    pattern="[0-9][0-9][0-9][0-9][0-9]" 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="sku" id="sku" 
+                                    placeholder="Ingrese sku de Producto a 5 digitos " />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label 
+                            for="prodname" class="cols-sm-2 control-label">
+                            Nombre del Producto
+                        </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-edit" 
+                                        aria-hidden="true">
+                                    </span>
+                                </span>
+                                <input
+                                    required
+                                    type="text" class="form-control" 
+                                    name="prodname" id="prodname" 
+                                    placeholder="Ingrese nombre del Producto " />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label 
+                            for="brand" class="cols-sm-2 control-label">
+                            Marca del Producto
+                        </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-heart" 
+                                        aria-hidden="true">
+                                    </span>
+                                </span>
+                                <input
+                                    required
+                                    type="text" class="form-control" 
+                                    name="brand" id="brand" 
+                                    placeholder="Ingrese marca del Producto " />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <input value="SALVAR" 
+                            type="submit" id="button" 
+                            class="btn btn-primary btn-lg btn-block login-button"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>   
+    
+    <!-- SCRIPTS -->
+    <!-- Cargando a Jquery -->
+    <script 
+        src="vendor/jquery/dist/jquery.min.js"></script>
+    <!-- Cargando Bootstrap -->
+    <script 
+        src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
