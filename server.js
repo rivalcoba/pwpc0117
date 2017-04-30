@@ -11,6 +11,8 @@ var mime = require('mime');
 
 // -- Cargando configuraciones
 var config = require("./config/config");
+var IP = config.IP;
+var PORT = config.PORT;
 
 // Importando los Handlers
 var handlers = require('./internals/handlers');
@@ -45,7 +47,7 @@ var server = http.createServer(function(req, res){
 });
 
 // Poniendo en ejecucion el server
-server.listen(process.env.PORT, process.env.IP, function(){
+server.listen(PORT, IP, function(){
     console.log(
-    `> Server escuchando en http://${config.IP}:${config.PORT}`.info)
+    `> Server escuchando en http://${IP}:${PORT}`.info)
 });
