@@ -125,9 +125,10 @@ var saveItem = (req, res)=>{
             // Salvando Datos en la DB
             bodega.saveItem(item,(err, result)=>{
                 if(err){
-                    console.log("> Error en la bd");
-                    res.end("> ERROR en la base de Datos");
-                    throw err;
+                    console.log(`> Error en la bd: ${err}`);
+                    res.end(`> Error en la bd: ${err}`);
+                    return;
+                    //throw err;
                 }
                 console.log(`> resultado: ${JSON.stringify(result)}`.data);
                 res.end(JSON.stringify(result));

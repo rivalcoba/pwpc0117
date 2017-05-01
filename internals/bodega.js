@@ -2,6 +2,7 @@ var config = require("../config/config");
 var MongoClient = require("mongodb").MongoClient;
 
 var stringConnection = config.dbStringConnection;
+console.log(`> BD: ${stringConnection}`);
 // Exportando ES6
 exports.saveItem = function(item, cb){
     //Conectando a la base de datos

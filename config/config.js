@@ -10,3 +10,4 @@ module.exports = {
     "STATIC_PATH" : "./static",
     "dbStringConnection" : process.env.DB || "mongodb://localhost:27017/bodega"
 };
+// $env:MyTestVariable = "My temporary test variable."
